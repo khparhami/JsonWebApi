@@ -27,7 +27,6 @@ namespace JsonWebApi.Controllers
             return "Please use 'POST' method to retrieve data!";
         }
 
-        // POST api/values
         public HttpResponseMessage Post([FromBody]Request request)
         {
             if (request != null && ModelState.IsValid)
