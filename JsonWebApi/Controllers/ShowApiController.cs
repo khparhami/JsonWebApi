@@ -27,6 +27,7 @@ namespace JsonWebApi.Controllers
             return "Please use 'POST' method to retrieve data!";
         }
 
+
         public HttpResponseMessage Post([FromBody]Request request)
         {
             if (request != null && ModelState.IsValid)
@@ -34,7 +35,7 @@ namespace JsonWebApi.Controllers
                 return Request.CreateResponse<Response>(HttpStatusCode.OK, new Response { response = this.filterService.FilterShows(request) });
             }
 
-            return Request.CreateResponse(HttpStatusCode.BadRequest, new Error { error = "Could not decode request: JSON parsing failed" });
+            return Request.CreateResponse(HttpStatusCode.BadRequest, new Error { error = Constants.ErrorMessage });
             
         }
 
