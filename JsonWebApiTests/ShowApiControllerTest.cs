@@ -44,7 +44,7 @@ namespace JsonWebApiTests
 
 
         [TestMethod]
-        public void Post_ReturnsStatusCodeOK_WhenModelStateIsValidAndRequestIsNotNull()
+        public void Post_ReturnsStatusCodeOK_WhenRequestIsValid()
         {
             //Arrange
             var target = GetController();
@@ -109,6 +109,22 @@ namespace JsonWebApiTests
             //Assert
             Assert.IsNotNull(actual);
             Assert.AreEqual(actual, Constants.ErrorMessage);
+
+        }
+
+        [TestMethod]
+        public void Post_FilterShowsWillBeCalledOnce_WhenRequestIsValid()
+        {
+            //Arrange
+            var target = GetController();
+            var request = GetRequest();
+
+            //Action
+            var actual = target.Post(request);
+
+
+            //Assert
+            this.filterService.Received(1).FilterShows(request);
 
         }
 
